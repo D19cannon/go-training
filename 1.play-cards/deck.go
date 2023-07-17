@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-// create a new deck of type of decl
+// create a new deck of type deck
 // which is a slice of type string[]
 
 type deck []string
@@ -22,8 +22,14 @@ func newDeck() deck {
 	return cards
 }
 
+// receiver function type.print()
+// can be used like deck.print()
 func (d deck) print() {
 	for i, card := range d {
 		fmt.Println(i, card)
 	}
+}
+
+func deal(d deck, handSize int) (deck, deck) {
+	return d[:handSize], d[handSize:]
 }
