@@ -14,7 +14,7 @@ func main() {
 	}
 
 	for _, link := range links {
-		pingUrl(link)
+		go pingUrl(link)
 	}
 }
 
