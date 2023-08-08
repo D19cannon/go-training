@@ -19,8 +19,8 @@ func main() {
 		go pingUrl(link, c)
 	}
 
-	for i := 0; i < len(links); i++ {
-		fmt.Println(<-c)
+	for {
+		go pingUrl(<-c, c)
 	}
 }
 
@@ -28,10 +28,10 @@ func pingUrl(url string, c chan string) {
 	_, err := http.Get(url)
 	if err != nil {
 		fmt.Println(url, "might be down")
-		c <- "might be down"
+		c <- url
 		return
 	}
 
 	fmt.Println(url, "is up")
-	c <- "is up"
+	c <- url
 }
